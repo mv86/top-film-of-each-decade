@@ -1,14 +1,16 @@
-const makeGetRequest = (url, callback) => {
-  const request = new XMLHttpRequest();
-  request.open('GET', url);
-  request.onload = () => {
-    if (this.status !== 200) {
-      console.log('Request failed: ', this.status);
-    } else {
-      callback(this.responseText);
+var ajaxHelper = {
+  makeGetRequest: function(url, callback) {
+    var request = new XMLHttpRequest();
+    request.open('GET', url);
+    request.onload = function() {
+      if (this.status !== 200) {
+        console.log('Request failed: ', this.status);
+      } else {
+        callback(this.responseText);
+      }
     }
     request.send();
   }
 };
 
-export default makeGetRequest; 
+module.exports = ajaxHelper;
